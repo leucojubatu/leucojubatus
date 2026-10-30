@@ -1,0 +1,17 @@
+{
+  "name": "leuco-jubatus-store",
+  "version": "2.0.0",
+  "description": "LEUCO JUBATUS storefront and admin with a Node.js/Express backend",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "import": "node scripts/import-state.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
