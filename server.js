@@ -22,10 +22,10 @@ if (info.generatedPassword) {
 const sessions = new SessionStore(SESSION_HOURS * 3600 * 1000);
 
 // The app page is one HTML file. Its data is injected per request (see below).
-const TEMPLATE_FILE = path.join(__dirname, 'views', 'index.html');
+const TEMPLATE_FILE = path.join(__dirname, 'index.html');
 const TEMPLATE = fs.readFileSync(TEMPLATE_FILE, 'utf8');
 const MARK = '/*__BOOT__*/null';
-if (TEMPLATE.indexOf(MARK) < 0) throw new Error('views/index.html is missing the boot marker');
+if (TEMPLATE.indexOf(MARK) < 0) throw new Error('index.html is missing the boot marker');
 
 const loginLimit = rateLimiter({ windowMs: 15 * 60 * 1000, max: 10 });
 const orderLimit = rateLimiter({ windowMs: 10 * 60 * 1000, max: 30 });
