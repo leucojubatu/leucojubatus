@@ -3,8 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const store = require('./lib/store');
-const { SessionStore, parseCookies, rateLimiter } = require('./lib/security');
+const store = require('./store');
+const { SessionStore, parseCookies, rateLimiter } = require('./security');
 
 const PORT = Number(process.env.PORT) || 3000;
 const COOKIE_SECURE = process.env.COOKIE_SECURE === '1'; // set to 1 when served over HTTPS
