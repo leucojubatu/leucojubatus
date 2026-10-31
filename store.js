@@ -24,9 +24,15 @@ class HttpError extends Error {
   }
 }
 
-const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, '..', 'data');
+// Vercel / serverless runtimes are not guaranteed to have a writable project
+// directory. Store runtime state under /tmp, and allow override via DATA_DIR.
+const DATA_DIR = process.env.DATA_DIR || '/tmp/leucojubatus-data';
 const DATA_FILE = path.join(DATA_DIR, 'store.json');
-const SEED_FILE = path.join(__dirname, '..', 'seed', 'initial-state.json');
+const SEED_CANDIDATES = [
+  path.join(__dirname, 'initial-state.json'),
+  path.join(__dirname, '..', 'seed', 'initial-state.json'),
+];
+const SEED_FILE = SEED_CANDIDATES.find(fs.existsSync) || SEED_CANDIDATES[0];
 const SOLD_LOG_MAX = 5000;
 
 let db = null; // { version, state, soldLog: [{v,pid,j,n}], soldFrom }
